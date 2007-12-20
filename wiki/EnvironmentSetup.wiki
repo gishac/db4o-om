@@ -1,4 +1,4 @@
-#summary Show potential maintainers how to set up the OM projects with Eclipse
+#summary Show developers how to set up the OM projects with Eclipse
 
 = What you need =
 
