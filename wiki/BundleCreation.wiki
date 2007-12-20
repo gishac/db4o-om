@@ -1,5 +1,5 @@
 #summary How to use the Ant task to create a binary OM distribution
 
-= Soon =
+= Using the Ant script =
 
-soon!
+You can build Object Manager by running build.xml in objectmanager-swing folder. The ready distribution package will appear in the same folder on completion.
