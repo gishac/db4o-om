@@ -2,7 +2,7 @@
 
 = What you need =
 
-You need to download Eclipse (http://www.eclipse.org) (pref. Eclipse 3.3) and install the Subclipse plugin.
+You need to download Eclipse (http://www.eclipse.org) (pref. Eclipse 3.3) and install a SVN plugin.
 
 = How to check out the Project =
 
