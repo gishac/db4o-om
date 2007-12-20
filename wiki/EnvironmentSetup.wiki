@@ -1,0 +1,11 @@
+#summary Show potential maintainers how to set up the OM projects with Eclipse
+
+= What you need =
+
+You need to download Eclipse (http://www.eclipse.org) (pref. Eclipse 3.3) and install the Subclipse plugin.
+
+= How to check out the Project =
+
+Create a new project under Eclipse choosing to pull the source code from SVN:
+
+https://db4o-om.googlecode.com/svn/trunk/
