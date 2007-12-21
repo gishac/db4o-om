@@ -26,8 +26,9 @@
     <target name="compile" depends="init"
             description="compile the source ">
         <!-- Compile the java code from ${src} into ${build} -->
-    	<mkdir dir="${build}" />
-        <javac srcdir="${src}" destdir="${build}"
+    	
+    	<mkdir dir="${build}"/>
+        <javac srcdir="${src}" destdir="${build}" excludes="com/db4o/objectmanager/test/**"
 				source="1.5" target="1.5">
             <classpath refid="class.path"/>
         </javac>
