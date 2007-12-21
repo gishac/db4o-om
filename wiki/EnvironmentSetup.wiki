@@ -4,7 +4,7 @@
 
 You need to download Eclipse (http://www.eclipse.org) (pref. Eclipse 3.3) and install a SVN plugin.
 
-If you use subclipse for example, you have to do the following in Eclipse:
+If you use Subclipse for example, you have to do the following in Eclipse:
 
  * Select Help > Software Updates > Find and Install. Select Search for new features to install. Click Next.
  * Click the New Remote Site button. Give the update site a name, like Subclipse, and type in the following address: http://subclipse.tigris.org/update/. Click OK. A new update site will be added to the list.
