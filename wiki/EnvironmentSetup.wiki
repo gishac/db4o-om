@@ -21,7 +21,7 @@ After installing Subclipse, open Eclipse, close any open project and do the foll
 
 File -> New -> Project -> SVN -> Checkout projects from SVN
 
-As url enter:
+Select "Create a New Repository Location" and enter:
 
 https://db4o-om.googlecode.com/svn/trunk/
 
