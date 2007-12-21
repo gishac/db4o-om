@@ -17,6 +17,14 @@ If you use subclipse for example, you have to do the following in Eclipse:
 
 = How to check out the Project =
 
-Create a new project under Eclipse choosing to pull the source code from SVN:
+After installing Subclipse, open Eclipse, close any open project and do the following in the menu:
+
+File -> New -> Project -> SVN -> Checkout projects from SVN
+
+As url enter:
 
 https://db4o-om.googlecode.com/svn/trunk/
+
+If you're ever asked for a password you should get it here:
+
+http://code.google.com/hosting/settings
