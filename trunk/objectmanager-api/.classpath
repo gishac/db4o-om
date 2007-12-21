@@ -7,6 +7,5 @@
 	<classpathentry kind="lib" path="lib/db4o-instrumentation.jar"/>
 	<classpathentry kind="lib" path="lib/bloat-1.0.jar"/>
 	<classpathentry kind="lib" path="test.lib/db4ounit.jar"/>
-	<classpathentry kind="lib" path="test.lib/junit-4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
