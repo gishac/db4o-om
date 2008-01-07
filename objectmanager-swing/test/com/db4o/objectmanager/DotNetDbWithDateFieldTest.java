@@ -15,10 +15,10 @@ import com.db4o.query.Predicate;
  * @author gishac
  * 
  */
-
+ 
 public class DotNetDbWithDateFieldTest {
 
-	/**
+	/***
 	 * @param args
 	 */
 	public static void main(String[] args) {
