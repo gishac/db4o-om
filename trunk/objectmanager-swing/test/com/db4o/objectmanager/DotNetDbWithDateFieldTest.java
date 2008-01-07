@@ -18,7 +18,7 @@ import com.db4o.query.Predicate;
  
 public class DotNetDbWithDateFieldTest {
 
-	/**
+	/***
 	 * @param args
 	 */
 	public static void main(String[] args) {
