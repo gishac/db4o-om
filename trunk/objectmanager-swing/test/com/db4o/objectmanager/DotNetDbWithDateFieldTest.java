@@ -13,7 +13,7 @@ import com.db4o.query.Predicate;
 
 /**
  * @author gishac
- *
+ * 
  */
 
 public class DotNetDbWithDateFieldTest {
