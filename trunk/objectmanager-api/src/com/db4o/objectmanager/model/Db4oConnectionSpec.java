@@ -7,6 +7,7 @@ import com.db4o.*;
 import com.db4o.config.*;
 import com.db4o.instrumentation.classfilter.*;
 import com.db4o.instrumentation.main.*;
+import com.db4o.objectmanager.configuration.ConfigurationFacade;
 import com.db4o.reflect.jdk.*;
 import com.db4o.ta.*;
 import com.db4o.ta.instrumentation.*;
@@ -18,6 +19,7 @@ public abstract class Db4oConnectionSpec {
     // Global temporary placeholder for read only setting.
     // TODO: Move to preferences when starting to work on editing.
     private static boolean PREFERENCE_IS_READ_ONLY = false;
+    private ConfigurationFacade configuration;
     
     public static boolean preferenceIsReadOnly() {
     	return PREFERENCE_IS_READ_ONLY;
@@ -100,7 +102,21 @@ public abstract class Db4oConnectionSpec {
 		configureTA(config);
 		config.updateDepth(10);
 		config.add(new DotnetSupport());
+		applyConfiguratio(config);
 		return config;
+	}
+	
+	private void applyConfiguratio(Configuration config){
+		if(configuration != null){
+			config.unicode(configuration.unicode());
+			config.io(configuration.encryptionProvider());
+			config.lockDatabaseFile(configuration.lockDatabaseFile());
+			config.callConstructors(configuration.callConstructors());
+		}
+	}
+	
+	public void setConfiguration(ConfigurationFacade configuration){
+		this.configuration = configuration;
 	}
 
 	private void configureTA(Configuration config) {
