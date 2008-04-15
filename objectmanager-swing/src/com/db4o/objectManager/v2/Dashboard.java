@@ -118,7 +118,7 @@ public class Dashboard {
 		frame.setIconImage(ResourceManager.createImageIcon(ResourceManager.ICONS_PLAIN_16X16 + "data.png", "database").getImage());
 		frame.setJMenuBar(buildMenuBar());
 		frame.setContentPane(buildContentPane());
-		frame.setSize(600, 462);
+		frame.setSize(600, 510);
 		frame.setResizable(false);
 		locateOnScreen(frame);
 		frame.setTitle(TITLE);

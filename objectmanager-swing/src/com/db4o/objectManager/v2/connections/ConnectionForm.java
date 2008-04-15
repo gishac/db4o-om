@@ -3,13 +3,17 @@ package com.db4o.objectManager.v2.connections;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.looks.Fonts;
+import com.db4o.config.Configuration;
 import com.db4o.objectmanager.model.Db4oConnectionSpec;
 import com.db4o.objectmanager.model.Db4oFileConnectionSpec;
 import com.db4o.objectmanager.model.Db4oSocketConnectionSpec;
 import com.db4o.objectmanager.api.prefs.Preferences;
+import com.db4o.objectmanager.configuration.ConfigurationFacade;
 import com.db4o.ObjectContainer;
+import com.db4o.objectManager.v2.configuration.ConfigurationDialog;
 import com.db4o.objectManager.v2.connections.RecentConnectionList;
 import com.db4o.objectManager.v2.connections.ConnectionHelper;
+import com.db4o.objectManager.v2.uiHelper.UIHelper;
 import com.db4o.objectManager.v2.Dashboard;
 import com.db4o.objectManager.v2.MainFrame;
 import com.db4o.objectManager.v2.WindowPrefsListener;
@@ -30,7 +34,7 @@ public class ConnectionForm {
 	private JTextField usernameTextField;
 	private JTextField passwordTextField;
 	private JTextField fileTextField;
-
+	private ConfigurationFacade configuration;
 	private JPanel panel;
 	private Dashboard dashboard;
 	private RecentConnectionList recentConnectionList;
@@ -92,6 +96,25 @@ public class ConnectionForm {
 		builder.append(welcome2);
 		builder.nextLine();
 		//builder.append("");
+		
+		builder.appendSeparator("Configuration");
+		JButton configurationButton = new JButton("Configure");
+		configurationButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				//JOptionPane.showMessageDialog(null, "Configure database");
+				ConfigurationDialog configurationForm = new ConfigurationDialog();
+				configurationForm.setAlwaysOnTop(true);
+				UIHelper.CenterFormInScreen(configurationForm, configurationForm.getToolkit());
+				configurationForm.setVisible(true);
+				configuration = configurationForm.getConfiguration();
+			}
+		});
+		
+		
+		builder.append("",configurationButton);
+
+		builder.nextLine();
+		
 		builder.appendSeparator("Local");
 		fileTextField = new JTextField();
 		builder.append("File:", fileTextField);
@@ -119,8 +142,9 @@ public class ConnectionForm {
 				connectToFile();
 			}
 		});
-		builder.append("", openButton);
-
+		builder.append("",openButton);
+		
+		
 
 		builder.nextLine();
 		builder.appendSeparator("Remote");
@@ -166,6 +190,7 @@ public class ConnectionForm {
 		if (fileTextField.getText().length() > 0) {
 			// then open file connection
 			Db4oConnectionSpec connectionSpec = new Db4oFileConnectionSpec(fileTextField.getText(), false);
+			connectionSpec.setConfiguration(configuration);
 			connectAndOpenFrame(connectionSpec);
 		}
 	}
@@ -180,6 +205,7 @@ public class ConnectionForm {
 			oc = ConnectionHelper.connect(dashboard.getFrame(), connectionSpec);
 		} catch (Exception ex) {
 			// if fails to open, stop, message already shown
+			System.out.println(ex.getMessage());
 			stopWorking();
 			return;
 		}
