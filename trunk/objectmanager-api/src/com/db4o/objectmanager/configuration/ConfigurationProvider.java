@@ -22,10 +22,28 @@ import com.db4o.io.IoAdapter;
 public class ConfigurationProvider implements Serializable {
 
 	transient private ConfigurationFacade _configuration;
-	transient IoAdapter _encryptionProvider;
+    transient IoAdapter _encryptionProvider;
 	private boolean _unicodeEnabled;
 	private boolean _lockDatabase;
 	private boolean _callConstructors;
+	private String _encryptionPassword;
+	private String _encryptionProviderPath; 
+
+	public String encryptionPassword() {
+		return _encryptionPassword;
+	}
+
+	public void encryptionPassword(String password) {
+		_encryptionPassword = password;
+	}
+
+	public String encryptionProviderPath() {
+		return _encryptionProviderPath;
+	}
+
+	public void encryptionProviderPath(String providerPath) {
+		_encryptionProviderPath = providerPath;
+	}
 
 	public ConfigurationProvider() {
 				
@@ -99,6 +117,8 @@ public class ConfigurationProvider implements Serializable {
 		_configuration.callConstructors(callConstructors());
 		_configuration.unicode(unicodeEnabled());
 		_configuration.lockDatabaseFile(lockDatabase());
+		_configuration.encryptionPassword(encryptionPassword());
+		_configuration.encriptionProviderPath(encryptionProviderPath());
 		if(encryptionProvider() != null)
 			_configuration.encryptionProvider(encryptionProvider());
 		return _configuration;
