@@ -6,16 +6,36 @@
  */
 package com.db4o.objectmanager.configuration;
 
+import java.io.Serializable;
+
 import com.db4o.io.IoAdapter;
 
-public class ConfigurationFacade {
+public class ConfigurationFacade implements Serializable {
 
 	transient IoAdapter _encryptionProvider;
 	private boolean _unicode;
 	private boolean _lockDatabaseFile;
 	private boolean _callConstructors;
+	private String _encryptionPassword;
+	private String _encriptionProviderPath;
+	public static String CONFIGURATION_FILE_PATH = ".\\configuration.cfg";
 	
+	public ConfigurationFacade(){
+		
+	}
 	
+	public String encriptionProviderPath() {
+		return _encriptionProviderPath;
+	}
+	public void encriptionProviderPath(String providerPath) {
+		_encriptionProviderPath = providerPath;
+	}
+	public String encryptionPassword() {
+		return _encryptionPassword;
+	}
+	public void encryptionPassword(String password) {
+		_encryptionPassword = password;
+	}
 	public IoAdapter encryptionProvider() {
 		return _encryptionProvider;
 	}
@@ -40,4 +60,6 @@ public class ConfigurationFacade {
 	public void callConstructors(boolean callConstructors) {
 		_callConstructors = callConstructors;
 	}
+	
+	
 }
