@@ -7,6 +7,7 @@ import com.db4o.config.Configuration;
 import com.db4o.objectmanager.model.Db4oConnectionSpec;
 import com.db4o.objectmanager.model.Db4oFileConnectionSpec;
 import com.db4o.objectmanager.model.Db4oSocketConnectionSpec;
+import com.db4o.objectmanager.api.helpers.SerializerHelper;
 import com.db4o.objectmanager.api.prefs.Preferences;
 import com.db4o.objectmanager.configuration.ConfigurationFacade;
 import com.db4o.ObjectContainer;
@@ -22,6 +23,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * User: treeder
@@ -102,7 +104,7 @@ public class ConnectionForm {
 		configurationButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null, "Configure database");
-				ConfigurationDialog configurationForm = new ConfigurationDialog();
+				ConfigurationDialog configurationForm = new ConfigurationDialog(configuration);
 				configurationForm.setAlwaysOnTop(true);
 				UIHelper.CenterFormInScreen(configurationForm, configurationForm.getToolkit());
 				configurationForm.setVisible(true);
@@ -110,8 +112,14 @@ public class ConnectionForm {
 			}
 		});
 		
+		JButton clearConfigurationButton = new JButton("Clear");
+		clearConfigurationButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				configuration = null;
+			}
+		});
 		
-		builder.append("",configurationButton);
+		builder.append("",configurationButton,clearConfigurationButton);
 
 		builder.nextLine();
 		
@@ -119,7 +127,7 @@ public class ConnectionForm {
 		fileTextField = new JTextField();
 		builder.append("File:", fileTextField);
 		final JFileChooser fc = new JFileChooser();
-		final Button browse = new Button("Browse");
+		final JButton browse = new JButton("Browse");
 		browse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Handle open button action.
@@ -176,9 +184,22 @@ public class ConnectionForm {
 			}
 		});
 		builder.append("", connectButton);
-
+		LoadConfiguration();
 		panel = builder.getPanel();
 		panel.setOpaque(false);
+	}
+	
+	private void LoadConfiguration(){
+		try {
+			Object result = SerializerHelper.Deserialize(ConfigurationFacade.CONFIGURATION_FILE_PATH);
+			if(result != null)
+				configuration = (ConfigurationFacade) result;
+		} catch (IOException e) {
+			e.printStackTrace();
+			//File not found
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void connectToFile(String dataFile) {

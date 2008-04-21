@@ -10,10 +10,14 @@ package com.db4o.objectManager.v2.configuration;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import com.db4o.Db4o;
 import com.db4o.config.Configuration;
+import com.db4o.objectManager.v2.Dashboard;
+import com.db4o.objectManager.v2.uiHelper.OptionPaneHelper;
+import com.db4o.objectmanager.api.helpers.SerializerHelper;
 import com.db4o.objectmanager.configuration.*;
 import com.jgoodies.forms.builder.*;
 import com.jgoodies.forms.layout.*;
@@ -26,6 +30,7 @@ public class ConfigurationPanel {
 	private JCheckBox _unicode;
 	private JCheckBox _lockDatabase;
 	private JCheckBox _callConstructors;
+	private JCheckBox _saveConfigurationBox;
 	private JTextField _encryptionPassword;
 	private JButton _buildConfiguration;
 	private ConfigurationFacade _configuration;
@@ -40,7 +45,16 @@ public class ConfigurationPanel {
 	 */
 	public ConfigurationPanel() {
 		super();
-		initialize();
+		initialize();		
+	}
+	
+	/**
+	 * This method initializes
+	 * @param configuration In memory configuration or stored configuration
+	 */
+	public ConfigurationPanel(ConfigurationFacade configuration){
+		this();
+		_configuration = configuration;
 	}
 	
 	/**
@@ -51,14 +65,40 @@ public class ConfigurationPanel {
 		this();
 		_container = container;
 	}
+	
+	/**
+	 * 
+	 * @param container The form which contains the panel
+	 */
+	public ConfigurationPanel(JDialog container,ConfigurationFacade currentConfiguration){
+		this(container);
+		this.configuration(currentConfiguration);
+	}
 
 	/**
 	 * This method initializes this
 	 * 
 	 */
 	private void initialize() {
+		_configurationProvider = new ConfigurationProvider();
 	}
 
+	/**
+	 * Get the configuration object built by the configuration window
+	 * @return
+	 */
+	public ConfigurationFacade configuration(){
+		return this._configuration;
+	}
+	
+	/**
+	 * Set the configuration object
+	 * @param configurationConfigurationFacade
+	 */
+	private void configuration(ConfigurationFacade configuration){
+		this._configuration = configuration;
+	}
+	
 	/**
 	 * Create all the UI elements for the configuration panel
 	 * 
@@ -99,9 +139,14 @@ public class ConfigurationPanel {
 		builder.nextLine();
 		
 		builder.append(buildConfiguration(),cancel());
+		
+		builder.nextLine();
+		
+		builder.append("",saveConfigurationBox());
 
 		panel = builder.getPanel();
 		panel.setOpaque(false);
+		applyConfiguration();
 		return panel;
 	}
 
@@ -136,6 +181,7 @@ public class ConfigurationPanel {
 	private JCheckBox callConstructors() {
 		_callConstructors = new JCheckBox();
 		_callConstructors.setOpaque(false);
+		_callConstructors.setSelected(true);
 		return _callConstructors;
 	}
 
@@ -147,6 +193,18 @@ public class ConfigurationPanel {
 	private JComboBox encryptionProvider() {
 		_encryptionProvider = new JComboBox();
 		return _encryptionProvider;
+	}
+	
+	/**
+	 * Create the checkbox to set if the configuration will be saved
+	 * 
+	 * @return
+	 */
+	private JCheckBox saveConfigurationBox() {
+		_saveConfigurationBox = new JCheckBox();
+		_saveConfigurationBox.setText("Save Configuration");
+		_saveConfigurationBox.setOpaque(false);
+		return _saveConfigurationBox;
 	}
 	
 	/**
@@ -175,17 +233,30 @@ public class ConfigurationPanel {
 				int dialogResult = jarFileChooser.showDialog(_container, "Ok");
 				if (dialogResult == JFileChooser.APPROVE_OPTION) {
 					File file = jarFileChooser.getSelectedFile();
-					JarLoader jarLoader = new JarLoader(file.getPath());
-					EncryptionProviderComboBoxModel model = new EncryptionProviderComboBoxModel(
-							jarLoader.getClasses(file.getPath()));
-					_encryptionProvider.setModel(model);
-					if(model.getDataSource().size() > 0)
-						_encryptionProvider.setSelectedIndex(0);
-					_encryptionProvider.setRenderer(new EncryptionProviderComboBoxRenderer());
+					String path = file.getPath();
+					loadEncryptionProvider(path);
 				}
 			}
 		});
 		return findEncryptionProvider;
+	}
+	
+	/**
+	 * 
+	 * @param path
+	 */
+	private boolean loadEncryptionProvider(String path) {
+		if(!new File(path).exists())
+			return false;
+		JarLoader jarLoader = new JarLoader(path);
+		EncryptionProviderComboBoxModel model = new EncryptionProviderComboBoxModel(
+				jarLoader.getClasses(path));
+		_encryptionProvider.setModel(model);
+		if(model.getDataSource().size() > 0)
+			_encryptionProvider.setSelectedIndex(0);		
+		_encryptionProvider.setRenderer(new EncryptionProviderComboBoxRenderer());
+		_configurationProvider.encryptionProviderPath(path);
+		return true;
 	}
 	
 	/**
@@ -239,18 +310,20 @@ public class ConfigurationPanel {
 		_buildConfiguration = new JButton("Ok");
 		_buildConfiguration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				_configurationProvider = new ConfigurationProvider();
+				
 				_configurationProvider.unicodeEnabled(_unicode.isSelected());
 				_configurationProvider.lockDatabase(_lockDatabase.isSelected());
 				_configurationProvider.callConstructors(_callConstructors.isSelected());
+				_configurationProvider.encryptionPassword(_encryptionPassword.getText());
 				try {
 					_configurationProvider.encryptionProvider(
 							EncryptionProviderHandler.getEncryptionProvider((Class) _encryptionProvider.getSelectedItem(),
-									_encryptionPassword.getText()));
+									_encryptionPassword.getText()));					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Can't create an instance of the Encryption Provider");
 				}
 				configuration(_configurationProvider.buildConfiguration());
+				saveConfiguration(configuration());
 				_container.setVisible(false);
 				_container.dispose();
 			}
@@ -260,18 +333,35 @@ public class ConfigurationPanel {
 	}
 	
 	/**
-	 * Get the configuration object built by the configuration window
-	 * @return
+	 * 
+	 * @param configuration
 	 */
-	public ConfigurationFacade configuration(){
-		return this._configuration;
+	private void saveConfiguration(ConfigurationFacade configuration){
+		if(!_saveConfigurationBox.isSelected())
+			return;
+		try {
+			SerializerHelper.Serialize(configuration, ConfigurationFacade.CONFIGURATION_FILE_PATH);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
 	/**
-	 * Set the configuration object
-	 * @param configurationConfigurationFacade
+	 * Applies the configuration if it exists
 	 */
-	private void configuration(ConfigurationFacade configuration){
-		this._configuration = configuration;
+	public void applyConfiguration()
+	{
+		if(_configuration == null)
+			return;
+		_unicode.setSelected(_configuration.unicode());
+		_callConstructors.setSelected(_configuration.callConstructors());
+		_lockDatabase.setSelected(_configuration.lockDatabaseFile());
+		_encryptionPassword.setText(_configuration.encryptionPassword());
+		if(_configuration.encriptionProviderPath() != null && _configuration.encriptionProviderPath().trim().length() > 0){
+			if(!loadEncryptionProvider(_configuration.encriptionProviderPath())){
+				OptionPaneHelper.showErrorMessage(_container, "The file " + _configuration.encriptionProviderPath() + "could not be opened, please load again your encryption provider.", "Encryption provider not found");
+			}				
+		}
 	}
+	
 }
