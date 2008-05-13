@@ -1,14 +1,19 @@
-#summary One-sentence summary of this page.
 #labels Tutorial
+The db4o Object Manager is a GUI tool to browse and query the contents of any db4o database file. Object Manager currently provides the following features:
 
-= Introduction =
+    * Powerful ad-hoc queries
+    * Efficient handling of large data sets
+    * Table view for quick scrolling through large data sets
+    * Tree view for drilling down through an object graph
+    * Access to internal database information including stored classes, data size and indexes
+    * Management functions including Backup and Defragment
 
-Add your content here.
+You can check the project development flow in OM Jira-project. Please, report there if any problems are encountered.
 
+This document can be found in your Object Manager distribution in the /docs folder.
 
-= Details =
+More Reading:
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+    * [Installation]
+    * [Object Manager Specifics]
+    * [Object Manager Tour]
