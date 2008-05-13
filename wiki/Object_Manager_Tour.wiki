@@ -1,5 +1,7 @@
 Upon starting Object Manager, you will see the Connection Manager:
 
+[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/OM.JPG]
+
 At this point, you can either:
 
     * Open a db4o database file
@@ -10,11 +12,15 @@ In order to open a db4o database file, simply click Browse and choose the db4o d
 If you just want to try ObjectManager, you can create a demo database by clicking File - Create Demo Db. This will create and open a database for you to use.
 Stored Classes Tree
 
+[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/StoredClasses.jpg]
+
 Once you click connect, the main ObjectManager window will open. All of the classes that have been stored will be displayed on the left in a tree:
 
 Querying for objects
 
 To view the objects stored in your db4o database, you must query for it. The query editor is at the top of the main window and looks like this:
+
+[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/query.jpg]
 
 To quickly see all of the objects of a certain class, just double click the class name in the stored classes tree. This will automatically build your query for you, and you just have to click the Submit button to the right of the query text area.
 Query Language
@@ -40,9 +46,13 @@ Query Results
 
 After executing a query, you will see the query results in table:
 
+[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/table.jpg]
+
 From this table, you can edit all primitive fields, Dates, and Strings by double clicking on a cell.
 
 You can also open an object up in a tree view so that you can descend further into the object:
+
+[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/tree.jpg]
 
 You can also edit fields from this view.
 Database Management
@@ -60,6 +70,8 @@ Defragment is available from "Manage-Defragment" menu or through "Ctrl-Shift-D" 
 Refactoring allows you to change the structure of persistent classes in a db4o database. Object Manager helps you to automate the simplest refactoring: renaming of class fields.
 
 In order to rename a class field double-click the class in a "Stored Classes" tree - class view will open on the right panel. Click "Edit" button at the bottom and change field names as necessary.
+
+[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/Refactor.Jpg]
 
 When the renaming is done, click "Stop Editing" button at the bottom. Remember to change your application classes accordingly.
 
