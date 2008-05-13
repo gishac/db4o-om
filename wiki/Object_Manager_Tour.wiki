@@ -16,7 +16,7 @@ http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/
 
 Once you click connect, the main ObjectManager window will open. All of the classes that have been stored will be displayed on the left in a tree:
 
-=Querying for objects=
+===Querying for objects===
 
 To view the objects stored in your db4o database, you must query for it. The query editor is at the top of the main window and looks like this:
 
@@ -24,7 +24,7 @@ http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/
 
 To quickly see all of the objects of a certain class, just double click the class name in the stored classes tree. This will automatically build your query for you, and you just have to click the Submit button to the right of the query text area.
 
-=Query Language=
+===Query Language===
 
 The Object Manager query language, Sql4o, is based on the SQL query language, so if you know SQL, you should have no problems with Sql4o.
 
@@ -57,7 +57,7 @@ http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/
 
 You can also edit fields from this view.
 
-=Database Management=
+===Database Management===
 
 The following management features are currently available:
 
