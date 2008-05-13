@@ -11,5 +11,5 @@ The db4o Object Manager is a GUI tool to browse and query the contents of any db
 More Reading:
 
     * [Installation]
-    * [Object Manager Specifics]
-    * [Object Manager Tour]
+    * [Object_Manager_Specifics]
+    * [Object_Manager_Tour]
