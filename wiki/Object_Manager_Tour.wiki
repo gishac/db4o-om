@@ -1,6 +1,6 @@
 Upon starting Object Manager, you will see the Connection Manager:
 
-[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/OM.JPG]
+http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/OM.JPG
 
 At this point, you can either:
 
@@ -12,28 +12,29 @@ In order to open a db4o database file, simply click Browse and choose the db4o d
 If you just want to try ObjectManager, you can create a demo database by clicking File - Create Demo Db. This will create and open a database for you to use.
 Stored Classes Tree
 
-[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/StoredClasses.jpg]
+http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/StoredClasses.jpg
 
 Once you click connect, the main ObjectManager window will open. All of the classes that have been stored will be displayed on the left in a tree:
 
-Querying for objects
+=Querying for objects=
 
 To view the objects stored in your db4o database, you must query for it. The query editor is at the top of the main window and looks like this:
 
-[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/query.jpg]
+http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/query.jpg
 
 To quickly see all of the objects of a certain class, just double click the class name in the stored classes tree. This will automatically build your query for you, and you just have to click the Submit button to the right of the query text area.
-Query Language
+
+=Query Language=
 
 The Object Manager query language, Sql4o, is based on the SQL query language, so if you know SQL, you should have no problems with Sql4o.
 
 Syntax:
 
-[SELECT select_expr, ...]
+SELECT select_expr, ...
 
 FROM object_type
 
-[WHERE where_condition]
+WHERE where_condition
 
 For example, to query all Contacts in the Demo Db:
 
@@ -46,16 +47,17 @@ Query Results
 
 After executing a query, you will see the query results in table:
 
-[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/table.jpg]
+http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/table.jpg
 
 From this table, you can edit all primitive fields, Dates, and Strings by double clicking on a cell.
 
 You can also open an object up in a tree view so that you can descend further into the object:
 
-[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/tree.jpg]
+http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/tree.jpg
 
 You can also edit fields from this view.
-Database Management
+
+=Database Management=
 
 The following management features are currently available:
 
@@ -71,42 +73,6 @@ Refactoring allows you to change the structure of persistent classes in a db4o d
 
 In order to rename a class field double-click the class in a "Stored Classes" tree - class view will open on the right panel. Click "Edit" button at the bottom and change field names as necessary.
 
-[http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/Refactor.Jpg]
+http://developer.db4o.com/Resources/view.aspx/Reference/Object_Manager_For_Db4o/Refactor.Jpg
 
-When the renaming is done, click "Stop Editing" button at the bottom. Remember to change your application classes accordingly.
-
-	
-About This Page
-Title: Object Manager Tour
-Moderated By:
-Created: 10-24-2006, 10:08 PM
-Modified: 08-12-2007, 12:52 AM
-Last Modified By: Tetyana Loskutova
-Revision Number: 12
-Relative Base: /Resources/Reference/Object_Manager_For_Db4o
-Show in index: True
-Show in Nav: True
-Redirects To: Not Redirected
-Topic Weight: 30
-Attachment: No Attachment
-Indexed: True
-ThreadID: 14185
-PostID: 39409
-SectionID: 127
-File Path: C:\Workspace\developer.db4o.com\app_data\wiki_data\Resources\Reference\Object_Manager_For_Db4o\Object_Manager_Tour.topic.xml
-Internal Uri: wiki:///Resources/Reference/Object_Manager_For_Db4o/Object_Manager_Tour
-Content Filter
-Common Tasks
-
-    * Edit this topic
-    * Print this topic
-    * View a previous version
-    * Create new child topic
-       
-    * Upload a new child attachment
-
-Wiki
-
-    * Help using CS-Wiki
-    * About CS-Wiki
-    * What's New?
+When the renaming is done, click "Stop Editing" button at the bottom. Remember to change your application classes accordingly.	
