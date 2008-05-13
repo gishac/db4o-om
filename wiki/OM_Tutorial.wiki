@@ -8,10 +8,6 @@ The db4o Object Manager is a GUI tool to browse and query the contents of any db
     * Access to internal database information including stored classes, data size and indexes
     * Management functions including Backup and Defragment
 
-You can check the project development flow in OM Jira-project. Please, report there if any problems are encountered.
-
-This document can be found in your Object Manager distribution in the /docs folder.
-
 More Reading:
 
     * [Installation]
