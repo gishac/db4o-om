@@ -6,6 +6,7 @@ import java.util.*;
 import javax.swing.event.*;
 import javax.swing.tree.*;
 
+import com.db4o.activation.ActivationPurpose;
 import com.db4o.objectManager.v2.*;
 import com.db4o.objectManager.v2.util.*;
 import com.db4o.objectmanager.api.helpers.*;
@@ -40,7 +41,7 @@ public class ObjectTreeModel implements TreeModel {
 		Reflector reflector = session.getObjectContainer().ext().reflector();
 		ReflectClass reflectClass = reflector.forObject(parentObject);
 		if(Activatable.class.isAssignableFrom(parentObject.getClass())){
-			((Activatable)parentObject).activate();
+			((Activatable)parentObject).activate(ActivationPurpose.READ);
 		}		
 		
 		if (reflectClass.isArray()) {

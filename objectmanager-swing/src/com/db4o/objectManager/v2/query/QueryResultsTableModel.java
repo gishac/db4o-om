@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import com.db4o.*;
+import com.db4o.activation.ActivationPurpose;
 import com.db4o.objectManager.v2.resources.*;
 import com.db4o.objectManager.v2.results.*;
 import com.db4o.objectManager.v2.util.*;
@@ -114,7 +115,7 @@ public class QueryResultsTableModel extends AbstractTableModel implements TableM
 	private void activateRowObject(int row, Result result) {
 		Object rowObject = result.getBaseObject(row);
 		if(Activatable.class.isAssignableFrom(rowObject.getClass())){
-			((Activatable)rowObject).activate();
+			((Activatable)rowObject).activate(ActivationPurpose.READ);
 		}
 	
 	}

@@ -11,7 +11,7 @@
 	<property name="docs" location="docs"/>
 	<property name="launch" location="launch"/>
 	<property name="dist.root" location="dist"/>
-	<property name="dist.version" value="7.0"/>
+	<property name="dist.version" value="7.2"/>
 	<property name="version.info" value="${dist.version}"/>
     <property name="webstart" value="webstart"/>
     <property name="dist-webstart" value="dist-webstart"/>
