@@ -4,8 +4,8 @@
 	<classpathentry kind="lib" path="test.lib/db4ounit.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-api/lib/bloat-1.0.jar"/>
-	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-api/lib/db4o-instrumentation.jar"/>
-	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-api/lib/db4o-java1.2.jar"/>
-	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-api/lib/db4o-taj.jar"/>
+	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-swing7.4/lib/db4o-taj.jar"/>
+	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-swing7.4/lib/db4o-instrumentation.jar"/>
+	<classpathentry kind="lib" path="G:/Mis Documentos/Java Workspace/objectmanager-swing7.4/lib/db4o-java1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
