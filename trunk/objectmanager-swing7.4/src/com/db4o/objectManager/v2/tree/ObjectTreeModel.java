@@ -6,6 +6,8 @@ import java.util.*;
 import javax.swing.event.*;
 import javax.swing.tree.*;
 
+import com.spaceprogram.db4o.sql.util.*;
+
 import com.db4o.activation.ActivationPurpose;
 import com.db4o.objectManager.v2.*;
 import com.db4o.objectManager.v2.util.*;
@@ -13,8 +15,6 @@ import com.db4o.objectmanager.api.helpers.*;
 import com.db4o.reflect.*;
 import com.db4o.reflect.generic.*;
 import com.db4o.ta.*;
-import com.spaceprogram.db4o.sql.util.*;
-
 /**
  * User: treeder
  * Date: Sep 8, 2006
@@ -62,8 +62,10 @@ public class ObjectTreeModel implements TreeModel {
 			}
 		} else {
 			// todo: could try caching all this reflect information if performance is bad -> get from ObjectSetMetaData
+			//ReflectHelper.
 			ReflectField[] fields = ReflectHelper.getDeclaredFieldsInHeirarchy(reflectClass);
-			fields[index].setAccessible();
+			//gishac 10/08/09
+			//fields[index].setAccessible();
 			Object value = fields[index].get(parentObject);
 			//System.out.println("getChild parent:" + parentNode.getObject().getClass() + " index:" + index + " field:" + fields[index].getName() + " value:" + value);
 			return new ObjectTreeNode(parentNode, fields[index], value);
@@ -187,7 +189,8 @@ public class ObjectTreeModel implements TreeModel {
 				storeSuper = true;
 			} else {
 				ReflectField rf = aNode.getField();
-				rf.setAccessible();
+				//gishac 10/08/09
+				//rf.setAccessible();
 				rf.set(parentObject, newOb);
 			}
 			if (storeSuper) {

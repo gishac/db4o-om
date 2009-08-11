@@ -30,8 +30,10 @@ public class ConnectionHelper {
 	private static ObjectContainer connectToFile(Component frame,
 			Db4oConnectionSpec connectionSpec) throws Exception {
 		try {
+			//Db4o.openFile(Db4o.newConfiguration(), "C:\\db\\complexObjectTest.yap");
 			assertFileExists(connectionSpec.getFullPath());
 			return Db4o.openFile(connectionSpec.newConfiguration(), connectionSpec.getFullPath());
+			//return Db4o.openFile(Db4o.newConfiguration(), connectionSpec.getFullPath());
 		} catch (DatabaseFileLockedException e) {
 			OptionPaneHelper.showErrorMessage(frame, "Database file is locked. Another process must be using it.", "Database File Locked");
 			throw e;

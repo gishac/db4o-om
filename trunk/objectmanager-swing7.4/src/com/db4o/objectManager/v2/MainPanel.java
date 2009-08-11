@@ -1,34 +1,5 @@
 package com.db4o.objectManager.v2;
 
-import com.db4o.ObjectContainer;
-import com.db4o.reflect.ReflectClass;
-import com.db4o.reflect.ReflectField;
-import com.db4o.objectManager.v2.uif_lite.component.Factory;
-import com.db4o.objectManager.v2.uif_lite.panel.SimpleInternalFrame;
-import com.db4o.objectManager.v2.util.Log;
-import com.db4o.objectManager.v2.util.DateFormatter;
-import com.db4o.objectManager.v2.query.QueryResultsPanel;
-import com.db4o.objectManager.v2.query.QueryBarPanel;
-import com.db4o.objectManager.v2.shortcuts.ShortcutsListener;
-import com.db4o.objectManager.v2.shortcuts.TabShortCutsListener;
-import com.db4o.objectManager.v2.resources.ResourceManager;
-import com.db4o.objectManager.v2.connections.ConnectionHelper;
-import com.db4o.objectmanager.api.DatabaseInspector;
-import com.db4o.objectmanager.api.impl.DatabaseInspectorImpl;
-import com.db4o.objectmanager.api.prefs.Preferences;
-import com.db4o.objectmanager.model.Db4oConnectionSpec;
-import com.jgoodies.looks.Options;
-import com.jgoodies.looks.plastic.PlasticLookAndFeel;
-import com.jgoodies.looks.windows.WindowsLookAndFeel;
-import com.jgoodies.forms.factories.Borders;
-import com.spaceprogram.db4o.sql.util.ReflectHelper;
-
-import javax.swing.*;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -37,6 +8,50 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+
+import javax.swing.AbstractButton;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
+
+import com.spaceprogram.db4o.sql.util.*;
+
+import com.db4o.ObjectContainer;
+import com.db4o.objectManager.v2.connections.ConnectionHelper;
+import com.db4o.objectManager.v2.query.QueryBarPanel;
+import com.db4o.objectManager.v2.query.QueryResultsPanel;
+import com.db4o.objectManager.v2.resources.ResourceManager;
+import com.db4o.objectManager.v2.shortcuts.ShortcutsListener;
+import com.db4o.objectManager.v2.shortcuts.TabShortCutsListener;
+import com.db4o.objectManager.v2.uif_lite.component.Factory;
+import com.db4o.objectManager.v2.uif_lite.panel.SimpleInternalFrame;
+import com.db4o.objectManager.v2.util.DateFormatter;
+import com.db4o.objectManager.v2.util.Log;
+import com.db4o.objectmanager.api.DatabaseInspector;
+import com.db4o.objectmanager.api.impl.DatabaseInspectorImpl;
+import com.db4o.objectmanager.api.prefs.Preferences;
+import com.db4o.objectmanager.model.Db4oConnectionSpec;
+import com.db4o.reflect.ReflectClass;
+import com.db4o.reflect.ReflectField;
+import com.jgoodies.forms.factories.Borders;
+import com.jgoodies.looks.Options;
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 /**
  * <p/>
