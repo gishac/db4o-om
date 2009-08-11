@@ -18,6 +18,7 @@ package com.db4o.objectmanager.model.nodes.field;
 
 import java.io.PrintStream;
 
+import com.db4o.internal.Platform4;
 import com.db4o.objectmanager.model.nodes.*;
 import com.db4o.objectmanager.model.nodes.partition.PartitionFieldNodeFactory;
 import com.db4o.objectmanager.model.IDatabase;
@@ -46,7 +47,9 @@ public class CollectionFieldNode extends FieldNode {
 	 */
 	public boolean hasChildren() {
 		ReflectClass clazz = _database.reflector().forObject(value);
-		return clazz. toArray(value).length > 0;
+		//gishac 10/08/2009 
+		//return clazz. toArray(value).length > 0;
+		return false;
 	}
 
 	/* (non-Javadoc)
@@ -54,7 +57,9 @@ public class CollectionFieldNode extends FieldNode {
 	 */
 	public IModelNode[] children() {
 		ReflectClass clazz = _database.reflector().forObject(value);
-		Object[] contents = clazz.toArray(value);
+		//gishac 10/08/2009 
+		//Object[] contents = clazz.toArray(value);
+		Object[] contents = new Object[0];
 		IModelNode[] results = new IModelNode[contents.length];
 		
 		for (int i = 0; i < results.length; i++) {

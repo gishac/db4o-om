@@ -31,7 +31,9 @@ public class FieldConstraint {
     }
 
     public void apply(Query query) {
-        if (field.getFieldType().isSecondClass()) {
+        //gishac 10/08/09 22:00 PM
+    	//if (field.getFieldType().isSecondClass()) {
+    	if (field.getFieldType().isPrimitive()) {
             Constraint constraint=query.descend(field.getName()).constrain(value);
             relation.apply(constraint);
         } else {

@@ -81,8 +81,9 @@ public class FieldNodeFactory {
 		if (instance == null) {
 			return new FieldNode(fieldName, fieldType,instance, database);
 		}
-		
-        if (valueType.isSecondClass()) {
+		//gishac 10/08/09
+        //if (valueType.isSecondClass()) {
+		if (valueType.isPrimitive()) {
             return new PrimitiveFieldNode(fieldName, fieldType,instance, database);
         }
         
