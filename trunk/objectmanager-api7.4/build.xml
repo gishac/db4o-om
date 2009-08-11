@@ -1,4 +1,4 @@
-<project name="objectmanager-api" default="dist" basedir=".">
+<project name="objectmanager-api7.4" default="dist" basedir=".">
     <description>
         ObjectManager build file
     </description>

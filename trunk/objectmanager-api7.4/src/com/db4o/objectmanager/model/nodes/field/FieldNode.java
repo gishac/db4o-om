@@ -136,7 +136,7 @@ public class FieldNode implements IModelNode {
 
     public static Object field(ReflectField field, Object instance) {
         try {
-            field.setAccessible();
+            //field.setAccessible();
             return field.get(instance);
         } catch (Exception e) {
             Logger.getLogger(FieldNode.class.getName()).log(Level.WARNING, "Unable to get the field contents", e);

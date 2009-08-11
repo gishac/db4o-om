@@ -46,7 +46,7 @@ public class CollectionFieldNode extends FieldNode {
 	 */
 	public boolean hasChildren() {
 		ReflectClass clazz = _database.reflector().forObject(value);
-		return clazz.toArray(value).length > 0;
+		return clazz. toArray(value).length > 0;
 	}
 
 	/* (non-Javadoc)

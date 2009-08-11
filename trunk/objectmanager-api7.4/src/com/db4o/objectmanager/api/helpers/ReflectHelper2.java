@@ -121,7 +121,7 @@ public class ReflectHelper2 {
 	public static boolean isIndexable(StoredField storedField) {
 		ReflectClass storedType = storedField.getStoredType();
 		if (storedType != null) { // primitive arrays return null
-			if (storedType.isPrimitive() || storedType.isSecondClass()) {
+			if (storedType.isPrimitive()) {
 				// this appears to include the ones you'd expect: Date, String, primitives, and primitive wrappers.
 				return true;
 			}
