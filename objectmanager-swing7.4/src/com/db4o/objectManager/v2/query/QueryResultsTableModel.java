@@ -5,6 +5,10 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
+import com.spaceprogram.db4o.sql.util.*;
+import com.spaceprogram.db4o.sql.*;
+
+
 import com.db4o.*;
 import com.db4o.activation.ActivationPurpose;
 import com.db4o.objectManager.v2.resources.*;
@@ -13,8 +17,6 @@ import com.db4o.objectManager.v2.util.*;
 import com.db4o.objectmanager.api.helpers.*;
 import com.db4o.reflect.*;
 import com.db4o.ta.*;
-import com.spaceprogram.db4o.sql.*;
-import com.spaceprogram.db4o.sql.util.*;
 
 /**
  * User: treeder
@@ -165,7 +167,8 @@ public class QueryResultsTableModel extends AbstractTableModel implements TableM
 		ReflectField[] rfs = ReflectHelper.getDeclaredFieldsInHeirarchy(rc);
 		if (rfs.length > col - extraColumns) {
 			ReflectField rf = rfs[col - extraColumns];
-			rf.setAccessible();
+			//gishac 10/08/09
+			//rf.setAccessible();
 			rf.set(o, value);
 			//System.out.println("Set value on field: " + rf.getName() + " " + rf.getFieldType() + " new value: " + rf.get(o));
 			queryResultsPanel.addObjectToBatch(o);
